@@ -2,10 +2,10 @@
   "agents": [
     {
       "agent_id": "699ef2fa4aaf7365c1a3dbdf",
-      "agent_name": "Voice Receptionist Agent",
+      "agent_name": "Recepcionista de Voz IA",
       "agent_type": "voice",
       "accessor": "websocket",
-      "description": "Handles inbound patient calls: answers FAQs from knowledge base, books/reschedules/cancels appointments on Google Calendar, and transfers to a human when the query requires clinical judgment, billing disputes, or falls outside its scope. Maintains a warm, professional, and empathetic healthcare tone throughout.",
+      "description": "Atiende llamadas entrantes de pacientes en español: responde preguntas frecuentes desde la base de conocimiento, agenda/reprograma/cancela citas en Google Calendar, y transfiere a un humano cuando la consulta requiere juicio clínico, disputas de facturación, o está fuera de su alcance. Mantiene un tono cálido, profesional y empático apropiado para el ámbito de salud.",
       "provider_id": "openai",
       "model": "gpt-4.1",
       "temperature": 0.3,
@@ -13,7 +13,7 @@
       "voice_config": {
         "initiator": "human",
         "message": "",
-        "language": "English",
+        "language": "Spanish",
         "voice": "sage"
       },
       "has_knowledge_base": true,
@@ -44,10 +44,10 @@
     {
       "rag_id": "699ef2bea098de59fa3fe5d0",
       "rag_name": "practicefaqsolvn",
-      "display_name": "Practice FAQs",
-      "description": "Knowledge base containing practice information including office hours, accepted insurance plans, location/directions, services offered, and other frequently asked questions for the medical practice.",
+      "display_name": "Preguntas Frecuentes del Consultorio",
+      "description": "Base de conocimiento con información del consultorio incluyendo horarios de atención, seguros aceptados, ubicación/direcciones, servicios ofrecidos y otras preguntas frecuentes de la práctica médica.",
       "linked_agent_id": "699ef2fa4aaf7365c1a3dbdf",
-      "linked_agent_name": "Voice Receptionist Agent"
+      "linked_agent_name": "Recepcionista de Voz IA"
     }
   ],
   "schedules": []

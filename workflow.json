@@ -1,0 +1,9 @@
+{
+  "nodes": [
+    {"id": "input_node", "type": "Input", "label": "Inbound Patient Call", "nodeCategory": "input"},
+    {"id": "voice_receptionist_agent", "type": "Agent", "label": "Voice Receptionist Agent", "nodeCategory": "agent"}
+  ],
+  "edges": [
+    {"source": "input_node", "target": "voice_receptionist_agent"}
+  ]
+}

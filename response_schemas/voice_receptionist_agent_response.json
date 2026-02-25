@@ -1,0 +1,15 @@
+{
+  "agent_name": "Voice Receptionist Agent",
+  "agent_id": "699ef2fa4aaf7365c1a3dbdf",
+  "description": "Handles inbound patient calls: answers FAQs from knowledge base, books/reschedules/cancels appointments on Google Calendar, and transfers to a human when the query requires clinical judgment, billing disputes, or falls outside its scope. Maintains a warm, professional, and empathetic healthcare tone throughout.",
+  "agent_type": "voice",
+  "accessor": "websocket",
+  "auto_generated": true,
+  "note": "Voice agents use WebSocket-based real-time audio streaming. No JSON response schema is applied to voice output. The agent responds with spoken audio directly to the caller.",
+  "voice_config": {
+    "initiator": "human",
+    "message": "",
+    "language": "English",
+    "voice": "sage"
+  }
+}

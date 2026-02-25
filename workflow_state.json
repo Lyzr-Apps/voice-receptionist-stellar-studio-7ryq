@@ -1,0 +1,54 @@
+{
+  "agents": [
+    {
+      "agent_id": "699ef2fa4aaf7365c1a3dbdf",
+      "agent_name": "Voice Receptionist Agent",
+      "agent_type": "voice",
+      "accessor": "websocket",
+      "description": "Handles inbound patient calls: answers FAQs from knowledge base, books/reschedules/cancels appointments on Google Calendar, and transfers to a human when the query requires clinical judgment, billing disputes, or falls outside its scope. Maintains a warm, professional, and empathetic healthcare tone throughout.",
+      "provider_id": "openai",
+      "model": "gpt-4.1",
+      "temperature": 0.3,
+      "top_p": 1,
+      "voice_config": {
+        "initiator": "human",
+        "message": "",
+        "language": "English",
+        "voice": "sage"
+      },
+      "has_knowledge_base": true,
+      "rag_id": "699ef2bea098de59fa3fe5d0",
+      "rag_name": "practicefaqsolvn",
+      "tool_configs": [
+        {
+          "tool_name": "googlecalendar",
+          "tool_source": "composio",
+          "action_names": [
+            "GOOGLECALENDAR_FIND_FREE_SLOTS",
+            "GOOGLECALENDAR_CREATE_EVENT",
+            "GOOGLECALENDAR_DELETE_EVENT",
+            "GOOGLECALENDAR_FIND_EVENT",
+            "GOOGLECALENDAR_LIST_CALENDARS"
+          ],
+          "persist_auth": true,
+          "server_id": "",
+          "provider_uuid": "6980d819100ddff45dec4e82",
+          "credential_id": ""
+        }
+      ],
+      "image_output_config": null,
+      "file_output": false
+    }
+  ],
+  "knowledge_bases": [
+    {
+      "rag_id": "699ef2bea098de59fa3fe5d0",
+      "rag_name": "practicefaqsolvn",
+      "display_name": "Practice FAQs",
+      "description": "Knowledge base containing practice information including office hours, accepted insurance plans, location/directions, services offered, and other frequently asked questions for the medical practice.",
+      "linked_agent_id": "699ef2fa4aaf7365c1a3dbdf",
+      "linked_agent_name": "Voice Receptionist Agent"
+    }
+  ],
+  "schedules": []
+}

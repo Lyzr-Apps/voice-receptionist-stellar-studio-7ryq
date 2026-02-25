@@ -22,7 +22,7 @@ import { FiPhone, FiCalendar, FiClock, FiSearch, FiSettings, FiDatabase, FiMic, 
 const RAG_ID = '699ef2bea098de59fa3fe5d0'
 const VOICE_AGENT_ID = '699ef2fa4aaf7365c1a3dbdf'
 
-// ---- Types ----
+// ---- Tipos ----
 interface CallEntry {
   id: string
   callerNumber: string
@@ -55,95 +55,95 @@ interface PracticeInfo {
   insuranceList: string
 }
 
-// ---- Demo Data ----
+// ---- Datos de Demostración ----
 const DEMO_CALLS: CallEntry[] = [
   {
     id: '1', callerNumber: '(555) 234-8901', duration: '3:42', durationSeconds: 222,
-    outcome: 'faq', summary: 'Patient asked about office hours and accepted insurance plans.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: Hi, I wanted to know your office hours?\nAgent: Our office is open Monday through Friday from 8 AM to 5 PM, and Saturday from 9 AM to 1 PM. We are closed on Sundays.\nCaller: Do you accept Blue Cross Blue Shield?\nAgent: Yes, we do accept Blue Cross Blue Shield. We also accept Aetna, Cigna, United Healthcare, and Medicare.\nCaller: Great, thank you!\nAgent: You\'re welcome! Is there anything else I can help you with?\nCaller: No, that\'s all. Goodbye.\nAgent: Have a wonderful day!',
-    timestamp: '2026-02-25T09:15:00', faqMatched: 'Office hours and insurance coverage'
+    outcome: 'faq', summary: 'El paciente preguntó sobre horarios de atención y seguros aceptados.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Hola, quería saber sus horarios de atención.\nAgente: Nuestro consultorio está abierto de lunes a viernes de 8 AM a 5 PM, y los sábados de 9 AM a 1 PM. Los domingos estamos cerrados.\nPaciente: ¿Aceptan Blue Cross Blue Shield?\nAgente: Sí, aceptamos Blue Cross Blue Shield. También aceptamos Aetna, Cigna, United Healthcare y Medicare.\nPaciente: Perfecto, ¡gracias!\nAgente: ¡De nada! ¿Hay algo más en lo que pueda ayudarle?\nPaciente: No, eso es todo. Adiós.\nAgente: ¡Que tenga un excelente día!',
+    timestamp: '2026-02-25T09:15:00', faqMatched: 'Horarios de atención y cobertura de seguros'
   },
   {
     id: '2', callerNumber: '(555) 876-5432', duration: '5:18', durationSeconds: 318,
-    outcome: 'appointment', summary: 'Booked annual physical exam for March 3rd at 10:00 AM.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I need to schedule my annual physical.\nAgent: I\'d be happy to help you with that. Let me check availability. Would you prefer a morning or afternoon appointment?\nCaller: Morning would be better.\nAgent: I have openings on March 3rd at 10:00 AM or March 5th at 9:30 AM. Which works better for you?\nCaller: March 3rd at 10 AM is perfect.\nAgent: I\'ve booked your annual physical exam for March 3rd at 10:00 AM with Dr. Williams. Please arrive 15 minutes early for paperwork.\nCaller: Thank you so much!',
-    timestamp: '2026-02-25T09:48:00', appointmentDetails: 'Annual Physical - March 3, 2026 at 10:00 AM with Dr. Williams'
+    outcome: 'appointment', summary: 'Se agendó examen físico anual para el 3 de marzo a las 10:00 AM.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Necesito programar mi examen físico anual.\nAgente: Con gusto le ayudo con eso. Permítame verificar la disponibilidad. ¿Prefiere una cita por la mañana o por la tarde?\nPaciente: Por la mañana sería mejor.\nAgente: Tengo disponibilidad el 3 de marzo a las 10:00 AM o el 5 de marzo a las 9:30 AM. ¿Cuál le conviene más?\nPaciente: El 3 de marzo a las 10 AM es perfecto.\nAgente: He agendado su examen físico anual para el 3 de marzo a las 10:00 AM con el Dr. Williams. Por favor llegue 15 minutos antes para el papeleo.\nPaciente: ¡Muchas gracias!',
+    timestamp: '2026-02-25T09:48:00', appointmentDetails: 'Examen Físico Anual - 3 de marzo, 2026 a las 10:00 AM con Dr. Williams'
   },
   {
     id: '3', callerNumber: '(555) 111-2233', duration: '2:05', durationSeconds: 125,
-    outcome: 'transfer', summary: 'Patient needed to discuss billing dispute regarding insurance claim.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I received a bill that doesn\'t look right. My insurance should have covered this.\nAgent: I understand your concern about the billing. Let me transfer you to our billing department who can review your account and resolve this for you.\nCaller: Okay, thank you.\nAgent: You\'re welcome. Please hold while I connect you.',
+    outcome: 'transfer', summary: 'El paciente necesitaba discutir una disputa de facturación sobre un reclamo de seguro.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Recibí una factura que no me parece correcta. Mi seguro debería haber cubierto esto.\nAgente: Entiendo su preocupación sobre la facturación. Permítame transferirle a nuestro departamento de facturación para que revisen su cuenta y resuelvan esto.\nPaciente: Está bien, gracias.\nAgente: De nada. Por favor espere mientras le conecto.',
     timestamp: '2026-02-25T10:22:00'
   },
   {
     id: '4', callerNumber: '(555) 444-5566', duration: '1:30', durationSeconds: 90,
-    outcome: 'missed', summary: 'Caller disconnected before the agent could assist.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\n[Call disconnected]',
+    outcome: 'missed', summary: 'La persona que llamó se desconectó antes de que el agente pudiera asistirle.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\n[Llamada desconectada]',
     timestamp: '2026-02-25T10:45:00'
   },
   {
     id: '5', callerNumber: '(555) 789-0123', duration: '4:12', durationSeconds: 252,
-    outcome: 'appointment', summary: 'Rescheduled dental cleaning from Feb 28 to March 7 at 2:00 PM.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I need to reschedule my dental cleaning.\nAgent: Of course. Can you provide me with your appointment date?\nCaller: It\'s February 28th.\nAgent: I see your dental cleaning on February 28th. When would you like to reschedule?\nCaller: Sometime the first week of March in the afternoon?\nAgent: I have March 7th at 2:00 PM available. Would that work?\nCaller: Perfect, yes.\nAgent: Done! Your dental cleaning has been rescheduled to March 7th at 2:00 PM.',
-    timestamp: '2026-02-25T11:03:00', appointmentDetails: 'Dental Cleaning - March 7, 2026 at 2:00 PM (Rescheduled)'
+    outcome: 'appointment', summary: 'Se reprogramó limpieza dental del 28 de feb al 7 de marzo a las 2:00 PM.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Necesito reprogramar mi limpieza dental.\nAgente: Por supuesto. ¿Puede proporcionarme la fecha de su cita?\nPaciente: Es el 28 de febrero.\nAgente: Veo su limpieza dental del 28 de febrero. ¿Cuándo le gustaría reprogramarla?\nPaciente: ¿Algún día de la primera semana de marzo por la tarde?\nAgente: Tengo disponibilidad el 7 de marzo a las 2:00 PM. ¿Le funciona?\nPaciente: Perfecto, sí.\nAgente: ¡Listo! Su limpieza dental ha sido reprogramada para el 7 de marzo a las 2:00 PM.',
+    timestamp: '2026-02-25T11:03:00', appointmentDetails: 'Limpieza Dental - 7 de marzo, 2026 a las 2:00 PM (Reprogramada)'
   },
   {
     id: '6', callerNumber: '(555) 321-6547', duration: '3:55', durationSeconds: 235,
-    outcome: 'faq', summary: 'Patient inquired about COVID-19 testing availability and preparation.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: Do you offer COVID testing?\nAgent: Yes, we offer both PCR and rapid antigen testing. PCR results typically take 24-48 hours, while rapid tests provide results in about 15 minutes.\nCaller: Do I need an appointment for a rapid test?\nAgent: Walk-ins are welcome for rapid testing, but we recommend scheduling an appointment to minimize wait times. Testing is available Monday through Friday from 8 AM to 4 PM.\nCaller: Is there any preparation needed?\nAgent: No special preparation is required. Just bring your ID and insurance card.',
-    timestamp: '2026-02-25T11:30:00', faqMatched: 'COVID-19 testing information'
+    outcome: 'faq', summary: 'El paciente preguntó sobre disponibilidad y preparación para pruebas de COVID-19.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: ¿Ofrecen pruebas de COVID?\nAgente: Sí, ofrecemos tanto pruebas PCR como de antígenos rápidos. Los resultados de PCR generalmente toman de 24 a 48 horas, mientras que las pruebas rápidas dan resultados en aproximadamente 15 minutos.\nPaciente: ¿Necesito cita para una prueba rápida?\nAgente: Se aceptan pacientes sin cita para pruebas rápidas, pero recomendamos agendar una cita para minimizar tiempos de espera. Las pruebas están disponibles de lunes a viernes de 8 AM a 4 PM.\nPaciente: ¿Se necesita alguna preparación?\nAgente: No se requiere preparación especial. Solo traiga su identificación y tarjeta de seguro.',
+    timestamp: '2026-02-25T11:30:00', faqMatched: 'Información sobre pruebas de COVID-19'
   },
   {
     id: '7', callerNumber: '(555) 654-9870', duration: '2:48', durationSeconds: 168,
-    outcome: 'transfer', summary: 'Patient requested prescription refill which requires clinical review.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I need to refill my blood pressure medication.\nAgent: I understand you need a prescription refill. For your safety, prescription refills need to be reviewed by our clinical staff. Let me transfer you to our nursing team.\nCaller: Alright, thank you.\nAgent: You\'re welcome. I\'m connecting you now.',
+    outcome: 'transfer', summary: 'El paciente solicitó reposición de receta que requiere revisión clínica.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Necesito que me resurtán mi medicamento para la presión arterial.\nAgente: Entiendo que necesita una reposición de receta. Por su seguridad, las reposiciones de recetas deben ser revisadas por nuestro personal clínico. Permítame transferirle a nuestro equipo de enfermería.\nPaciente: Está bien, gracias.\nAgente: De nada. Le estoy conectando ahora.',
     timestamp: '2026-02-25T12:15:00'
   },
   {
     id: '8', callerNumber: '(555) 987-3210', duration: '6:22', durationSeconds: 382,
-    outcome: 'appointment', summary: 'New patient consultation scheduled for March 10 at 11:00 AM.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I\'m a new patient and I\'d like to schedule my first visit.\nAgent: Welcome! We\'d love to have you. For new patients, we schedule a 45-minute consultation. Can you tell me your preferred dates?\nCaller: Sometime next week if possible.\nAgent: I have availability on March 10th at 11:00 AM or March 12th at 3:00 PM. Which do you prefer?\nCaller: March 10th works great.\nAgent: Wonderful! I\'ve scheduled your new patient consultation for March 10th at 11:00 AM. You\'ll receive a confirmation email with new patient forms to complete before your visit.\nCaller: Thank you, I look forward to it.',
-    timestamp: '2026-02-25T13:02:00', appointmentDetails: 'New Patient Consultation - March 10, 2026 at 11:00 AM'
+    outcome: 'appointment', summary: 'Se agendó consulta de paciente nuevo para el 10 de marzo a las 11:00 AM.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: Soy paciente nuevo y me gustaría programar mi primera visita.\nAgente: ¡Bienvenido! Nos encantaría atenderle. Para pacientes nuevos, programamos una consulta de 45 minutos. ¿Puede decirme sus fechas preferidas?\nPaciente: ¿Algún día de la próxima semana si es posible?\nAgente: Tengo disponibilidad el 10 de marzo a las 11:00 AM o el 12 de marzo a las 3:00 PM. ¿Cuál prefiere?\nPaciente: El 10 de marzo me viene perfecto.\nAgente: ¡Excelente! He programado su consulta de paciente nuevo para el 10 de marzo a las 11:00 AM. Recibirá un correo de confirmación con formularios para completar antes de su visita.\nPaciente: Gracias, lo espero con gusto.',
+    timestamp: '2026-02-25T13:02:00', appointmentDetails: 'Consulta Paciente Nuevo - 10 de marzo, 2026 a las 11:00 AM'
   },
   {
     id: '9', callerNumber: '(555) 456-7890', duration: '1:55', durationSeconds: 115,
-    outcome: 'faq', summary: 'Caller asked about directions to the office and parking availability.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: Can you tell me where your office is located?\nAgent: We\'re located at 1234 Health Avenue, Suite 200, in the Medical Arts Building. There\'s free parking available in the adjacent garage.\nCaller: Is there handicap parking?\nAgent: Yes, handicap-accessible parking is available on the ground level of the parking garage, closest to the building entrance.\nCaller: Thank you!',
-    timestamp: '2026-02-25T13:45:00', faqMatched: 'Office location and parking'
+    outcome: 'faq', summary: 'La persona preguntó por la ubicación del consultorio y disponibilidad de estacionamiento.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: ¿Puede decirme dónde está ubicado su consultorio?\nAgente: Estamos ubicados en Avenida Salud 1234, Suite 200, en el Edificio de Artes Médicas. Hay estacionamiento gratuito disponible en el garaje adyacente.\nPaciente: ¿Hay estacionamiento para discapacitados?\nAgente: Sí, el estacionamiento accesible para personas con discapacidad está disponible en la planta baja del garaje, más cercano a la entrada del edificio.\nPaciente: ¡Gracias!',
+    timestamp: '2026-02-25T13:45:00', faqMatched: 'Ubicación del consultorio y estacionamiento'
   },
   {
     id: '10', callerNumber: '(555) 222-3344', duration: '7:45', durationSeconds: 465,
-    outcome: 'transfer', summary: 'Patient reported urgent symptoms requiring immediate medical advice.',
-    transcript: 'Agent: Thank you for calling MedConnect. How can I help you today?\nCaller: I\'ve been having severe chest pain for the past hour.\nAgent: I\'m sorry to hear that. Chest pain can be serious and requires immediate medical attention. I\'m going to transfer you to our on-call nurse right away. If your pain worsens, please hang up and call 911 immediately.\nCaller: Okay, please hurry.\nAgent: Connecting you now. Please stay on the line.',
+    outcome: 'transfer', summary: 'El paciente reportó síntomas urgentes que requieren atención médica inmediata.',
+    transcript: 'Agente: Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?\nPaciente: He tenido un dolor severo en el pecho durante la última hora.\nAgente: Lamento escuchar eso. El dolor de pecho puede ser serio y requiere atención médica inmediata. Voy a transferirle a nuestra enfermera de guardia de inmediato. Si su dolor empeora, por favor cuelgue y llame al 911 inmediatamente.\nPaciente: Está bien, por favor apúrese.\nAgente: Le estoy conectando ahora. Por favor permanezca en la línea.',
     timestamp: '2026-02-25T14:20:00'
   }
 ]
 
 const DEFAULT_TRANSFER_RULES: TransferRule[] = [
-  { id: '1', keyword: 'emergency' },
-  { id: '2', keyword: 'billing dispute' },
-  { id: '3', keyword: 'prescription refill' },
-  { id: '4', keyword: 'medical advice' },
-  { id: '5', keyword: 'urgent' },
+  { id: '1', keyword: 'emergencia' },
+  { id: '2', keyword: 'disputa de facturación' },
+  { id: '3', keyword: 'reposición de receta' },
+  { id: '4', keyword: 'consejo médico' },
+  { id: '5', keyword: 'urgente' },
 ]
 
 const DEFAULT_BUSINESS_HOURS: BusinessHour[] = [
-  { day: 'Monday', open: '08:00', close: '17:00', closed: false },
-  { day: 'Tuesday', open: '08:00', close: '17:00', closed: false },
-  { day: 'Wednesday', open: '08:00', close: '17:00', closed: false },
-  { day: 'Thursday', open: '08:00', close: '17:00', closed: false },
-  { day: 'Friday', open: '08:00', close: '17:00', closed: false },
-  { day: 'Saturday', open: '09:00', close: '13:00', closed: false },
-  { day: 'Sunday', open: '09:00', close: '17:00', closed: true },
+  { day: 'Lunes', open: '08:00', close: '17:00', closed: false },
+  { day: 'Martes', open: '08:00', close: '17:00', closed: false },
+  { day: 'Miércoles', open: '08:00', close: '17:00', closed: false },
+  { day: 'Jueves', open: '08:00', close: '17:00', closed: false },
+  { day: 'Viernes', open: '08:00', close: '17:00', closed: false },
+  { day: 'Sábado', open: '09:00', close: '13:00', closed: false },
+  { day: 'Domingo', open: '09:00', close: '17:00', closed: true },
 ]
 
-// ---- Outcome helpers ----
+// ---- Helpers de resultado ----
 function getOutcomeLabel(outcome: string) {
   switch (outcome) {
-    case 'faq': return 'FAQ Answered'
-    case 'appointment': return 'Appointment Booked'
-    case 'transfer': return 'Transferred'
-    case 'missed': return 'Missed'
+    case 'faq': return 'FAQ Respondida'
+    case 'appointment': return 'Cita Agendada'
+    case 'transfer': return 'Transferida'
+    case 'missed': return 'Perdida'
     default: return outcome
   }
 }
@@ -171,7 +171,7 @@ function getOutcomeIcon(outcome: string) {
 function formatTime(isoString: string) {
   try {
     const d = new Date(isoString)
-    return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+    return d.toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit', hour12: true })
   } catch {
     return ''
   }
@@ -180,7 +180,7 @@ function formatTime(isoString: string) {
 function formatDateTime(isoString: string) {
   try {
     const d = new Date(isoString)
-    return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })
+    return d.toLocaleString('es-MX', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })
   } catch {
     return ''
   }
@@ -203,10 +203,10 @@ class ErrorBoundary extends React.Component<
       return (
         <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
           <div className="text-center p-8 max-w-md">
-            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
+            <h2 className="text-xl font-semibold mb-2">Algo salió mal</h2>
             <p className="text-muted-foreground mb-4 text-sm">{this.state.error}</p>
             <button onClick={() => this.setState({ hasError: false, error: '' })} className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm">
-              Try again
+              Intentar de nuevo
             </button>
           </div>
         </div>
@@ -216,7 +216,7 @@ class ErrorBoundary extends React.Component<
   }
 }
 
-// ---- Sidebar Nav Item ----
+// ---- Elemento de Navegación del Sidebar ----
 function SidebarNavItem({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active: boolean; onClick: () => void }) {
   return (
     <button
@@ -234,7 +234,7 @@ function SidebarNavItem({ icon, label, active, onClick }: { icon: React.ReactNod
   )
 }
 
-// ---- Metric Card ----
+// ---- Tarjeta de Métrica ----
 function MetricCard({ icon, label, value, change, changePositive }: { icon: React.ReactNode; label: string; value: number; change: string; changePositive: boolean }) {
   return (
     <Card className="shadow-sm hover:shadow-md transition-shadow duration-200">
@@ -250,7 +250,7 @@ function MetricCard({ icon, label, value, change, changePositive }: { icon: Reac
                 <FiArrowDownRight className="w-3.5 h-3.5 text-red-600" />
               )}
               <span className={changePositive ? 'text-green-600' : 'text-red-600'}>{change}</span>
-              <span className="text-muted-foreground ml-1">vs yesterday</span>
+              <span className="text-muted-foreground ml-1">vs ayer</span>
             </div>
           </div>
           <div className="p-3 rounded-lg bg-primary/10 text-primary">
@@ -262,7 +262,7 @@ function MetricCard({ icon, label, value, change, changePositive }: { icon: Reac
   )
 }
 
-// ---- Voice Call Modal ----
+// ---- Modal de Llamada de Voz ----
 function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [callState, setCallState] = useState<'idle' | 'connecting' | 'active' | 'ended' | 'error'>('idle')
   const [isMuted, setIsMuted] = useState(false)
@@ -313,7 +313,7 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
       })
 
       if (!res.ok) {
-        throw new Error('Failed to start voice session')
+        throw new Error('No se pudo iniciar la sesión de voz')
       }
 
       const data = await res.json()
@@ -321,7 +321,7 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
       const sr = data?.audioConfig?.sampleRate ?? 24000
       sampleRateRef.current = sr
 
-      if (!wsUrl) throw new Error('No WebSocket URL returned')
+      if (!wsUrl) throw new Error('No se recibió URL de WebSocket')
 
       const ac = new AudioContext({ sampleRate: sr })
       audioContextRef.current = ac
@@ -374,7 +374,7 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
             sourceNode.start(startTime)
             nextPlayTimeRef.current = startTime + audioBuffer.duration
           } else if (msg.type === 'transcript') {
-            const role = msg.role === 'user' ? 'You' : 'Agent'
+            const role = msg.role === 'user' ? 'Tú' : 'Agente'
             const text = msg.text ?? msg.transcript ?? ''
             if (text) {
               setTranscript(prev => {
@@ -389,19 +389,19 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
             }
             setThinkingText('')
           } else if (msg.type === 'thinking') {
-            setThinkingText(msg.text ?? 'Thinking...')
+            setThinkingText(msg.text ?? 'Pensando...')
           } else if (msg.type === 'clear') {
             nextPlayTimeRef.current = 0
           } else if (msg.type === 'error') {
-            setErrorMsg(msg.message ?? 'Voice agent error')
+            setErrorMsg(msg.message ?? 'Error del agente de voz')
           }
         } catch {
-          // ignore parse errors
+          // ignorar errores de parseo
         }
       }
 
       ws.onerror = () => {
-        setErrorMsg('WebSocket connection error')
+        setErrorMsg('Error de conexión WebSocket')
         setCallState('error')
       }
 
@@ -427,7 +427,7 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
         ws.send(JSON.stringify({ type: 'audio', audio: base64, sampleRate: sr }))
       }
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Failed to start call')
+      setErrorMsg(err instanceof Error ? err.message : 'No se pudo iniciar la llamada')
       setCallState('error')
     }
   }, [])
@@ -479,12 +479,12 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
     <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose() }}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-serif text-lg">Test Voice Call</DialogTitle>
-          <DialogDescription className="font-sans text-sm">Test the AI receptionist by having a live conversation.</DialogDescription>
+          <DialogTitle className="font-serif text-lg">Llamada de Prueba</DialogTitle>
+          <DialogDescription className="font-sans text-sm">Prueba el recepcionista IA teniendo una conversación en vivo.</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
-          {/* Status & Timer */}
+          {/* Estado y Temporizador */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               {callState === 'active' && <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />}
@@ -492,8 +492,8 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
               {callState === 'ended' && <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />}
               {callState === 'error' && <span className="w-2.5 h-2.5 rounded-full bg-red-500" />}
               {callState === 'idle' && <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />}
-              <span className="text-sm font-sans text-muted-foreground capitalize">
-                {callState === 'idle' ? 'Ready' : callState === 'active' ? 'In Call' : callState === 'connecting' ? 'Connecting...' : callState === 'error' ? 'Error' : 'Call Ended'}
+              <span className="text-sm font-sans text-muted-foreground">
+                {callState === 'idle' ? 'Listo' : callState === 'active' ? 'En Llamada' : callState === 'connecting' ? 'Conectando...' : callState === 'error' ? 'Error' : 'Llamada Finalizada'}
               </span>
             </div>
             {(callState === 'active' || callState === 'ended') && (
@@ -501,32 +501,32 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
             )}
           </div>
 
-          {/* Transcript */}
+          {/* Transcripción */}
           <ScrollArea className="h-52 rounded-lg border bg-background p-3">
             {transcript.length === 0 && callState === 'idle' && (
               <div className="flex flex-col items-center justify-center h-full text-muted-foreground text-sm">
                 <FiPhoneCall className="w-8 h-8 mb-2 opacity-50" />
-                <p>Click Start Call to begin</p>
+                <p>Haga clic en Iniciar Llamada para comenzar</p>
               </div>
             )}
             {transcript.length === 0 && callState === 'connecting' && (
               <div className="flex flex-col items-center justify-center h-full text-muted-foreground text-sm">
                 <FiActivity className="w-8 h-8 mb-2 animate-pulse" />
-                <p>Connecting to voice agent...</p>
+                <p>Conectando con el agente de voz...</p>
               </div>
             )}
             <div className="space-y-2">
               {transcript.map((entry, i) => (
-                <div key={i} className={cn('text-sm font-sans', entry.role === 'You' ? 'text-right' : 'text-left')}>
+                <div key={i} className={cn('text-sm font-sans', entry.role === 'Tú' ? 'text-right' : 'text-left')}>
                   <span className="text-xs font-medium text-muted-foreground">{entry.role}</span>
-                  <p className={cn('inline-block px-3 py-1.5 rounded-lg mt-0.5 max-w-[85%]', entry.role === 'You' ? 'bg-primary/10 text-foreground' : 'bg-secondary text-foreground')}>
+                  <p className={cn('inline-block px-3 py-1.5 rounded-lg mt-0.5 max-w-[85%]', entry.role === 'Tú' ? 'bg-primary/10 text-foreground' : 'bg-secondary text-foreground')}>
                     {entry.text}
                   </p>
                 </div>
               ))}
               {thinkingText && (
                 <div className="text-left">
-                  <span className="text-xs font-medium text-muted-foreground">Agent</span>
+                  <span className="text-xs font-medium text-muted-foreground">Agente</span>
                   <p className="inline-block px-3 py-1.5 rounded-lg mt-0.5 bg-secondary text-muted-foreground italic text-sm">{thinkingText}</p>
                 </div>
               )}
@@ -538,12 +538,12 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
             <div className="text-sm text-destructive bg-destructive/10 rounded-md p-2">{errorMsg}</div>
           )}
 
-          {/* Controls */}
+          {/* Controles */}
           <div className="flex items-center justify-center gap-4">
             {callState === 'idle' || callState === 'ended' || callState === 'error' ? (
               <Button onClick={startCall} className="gap-2 bg-green-600 hover:bg-green-700 text-white">
                 <FiPhone className="w-4 h-4" />
-                {callState === 'ended' ? 'Call Again' : 'Start Call'}
+                {callState === 'ended' ? 'Llamar de Nuevo' : 'Iniciar Llamada'}
               </Button>
             ) : callState === 'active' ? (
               <>
@@ -562,14 +562,14 @@ function VoiceCallModal({ open, onClose }: { open: boolean; onClose: () => void 
   )
 }
 
-// ---- Call Detail Modal ----
+// ---- Modal de Detalles de Llamada ----
 function CallDetailModal({ call, open, onClose }: { call: CallEntry | null; open: boolean; onClose: () => void }) {
   if (!call) return null
   return (
     <Dialog open={open} onOpenChange={(v) => { if (!v) onClose() }}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle className="font-serif text-lg">Call Details</DialogTitle>
+          <DialogTitle className="font-serif text-lg">Detalles de la Llamada</DialogTitle>
           <DialogDescription className="font-sans text-sm">{call.callerNumber} - {formatDateTime(call.timestamp)}</DialogDescription>
         </DialogHeader>
         <div className="space-y-4">
@@ -582,20 +582,20 @@ function CallDetailModal({ call, open, onClose }: { call: CallEntry | null; open
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold font-sans mb-1">Summary</h4>
+            <h4 className="text-sm font-semibold font-sans mb-1">Resumen</h4>
             <p className="text-sm text-muted-foreground font-sans leading-relaxed">{call.summary}</p>
           </div>
 
           {call.appointmentDetails && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <h4 className="text-sm font-semibold font-sans mb-1 text-blue-800 flex items-center gap-1"><FiCalendar className="w-3.5 h-3.5" /> Appointment</h4>
+              <h4 className="text-sm font-semibold font-sans mb-1 text-blue-800 flex items-center gap-1"><FiCalendar className="w-3.5 h-3.5" /> Cita</h4>
               <p className="text-sm text-blue-700">{call.appointmentDetails}</p>
             </div>
           )}
 
           {call.faqMatched && (
             <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <h4 className="text-sm font-semibold font-sans mb-1 text-green-800 flex items-center gap-1"><FiHelpCircle className="w-3.5 h-3.5" /> FAQ Matched</h4>
+              <h4 className="text-sm font-semibold font-sans mb-1 text-green-800 flex items-center gap-1"><FiHelpCircle className="w-3.5 h-3.5" /> FAQ Coincidente</h4>
               <p className="text-sm text-green-700">{call.faqMatched}</p>
             </div>
           )}
@@ -603,15 +603,15 @@ function CallDetailModal({ call, open, onClose }: { call: CallEntry | null; open
           <Separator />
 
           <div>
-            <h4 className="text-sm font-semibold font-sans mb-2">Transcript</h4>
+            <h4 className="text-sm font-semibold font-sans mb-2">Transcripción</h4>
             <ScrollArea className="h-48 rounded-lg border bg-background p-3">
               <div className="space-y-1.5">
                 {call.transcript.split('\n').map((line, i) => {
-                  if (line.startsWith('Agent:')) {
-                    return <p key={i} className="text-sm font-sans"><span className="font-semibold text-primary">Agent:</span> {line.slice(6).trim()}</p>
+                  if (line.startsWith('Agente:')) {
+                    return <p key={i} className="text-sm font-sans"><span className="font-semibold text-primary">Agente:</span> {line.slice(7).trim()}</p>
                   }
-                  if (line.startsWith('Caller:')) {
-                    return <p key={i} className="text-sm font-sans"><span className="font-semibold text-accent-foreground">Caller:</span> {line.slice(7).trim()}</p>
+                  if (line.startsWith('Paciente:')) {
+                    return <p key={i} className="text-sm font-sans"><span className="font-semibold text-accent-foreground">Paciente:</span> {line.slice(9).trim()}</p>
                   }
                   return <p key={i} className="text-sm font-sans text-muted-foreground italic">{line}</p>
                 })}
@@ -624,7 +624,7 @@ function CallDetailModal({ call, open, onClose }: { call: CallEntry | null; open
   )
 }
 
-// ---- Dashboard Screen ----
+// ---- Pantalla de Panel Principal ----
 function DashboardScreen({ calls, onViewAllCalls, onManageKB, onTestCall }: { calls: CallEntry[]; onViewAllCalls: () => void; onManageKB: () => void; onTestCall: () => void }) {
   const [showSample, setShowSample] = useState(true)
 
@@ -639,44 +639,44 @@ function DashboardScreen({ calls, onViewAllCalls, onManageKB, onTestCall }: { ca
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Encabezado */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Dashboard</h1>
-          <p className="text-sm font-sans text-muted-foreground mt-1">Today&#39;s performance overview</p>
+          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Panel Principal</h1>
+          <p className="text-sm font-sans text-muted-foreground mt-1">Resumen del rendimiento de hoy</p>
         </div>
         <div className="flex items-center gap-3">
-          <Label htmlFor="sample-toggle" className="text-xs font-sans text-muted-foreground">Sample Data</Label>
+          <Label htmlFor="sample-toggle" className="text-xs font-sans text-muted-foreground">Datos de Ejemplo</Label>
           <Switch id="sample-toggle" checked={showSample} onCheckedChange={setShowSample} />
         </div>
       </div>
 
-      {/* Metrics */}
+      {/* Métricas */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard icon={<FiPhone className="w-5 h-5" />} label="Total Calls Today" value={metrics.total} change="+12%" changePositive={true} />
-        <MetricCard icon={<FiCalendar className="w-5 h-5" />} label="Appointments Booked" value={metrics.appointments} change="+8%" changePositive={true} />
-        <MetricCard icon={<FiHelpCircle className="w-5 h-5" />} label="FAQs Answered" value={metrics.faqs} change="+15%" changePositive={true} />
-        <MetricCard icon={<FiUsers className="w-5 h-5" />} label="Transfers to Human" value={metrics.transfers} change="-5%" changePositive={false} />
+        <MetricCard icon={<FiPhone className="w-5 h-5" />} label="Llamadas Hoy" value={metrics.total} change="+12%" changePositive={true} />
+        <MetricCard icon={<FiCalendar className="w-5 h-5" />} label="Citas Agendadas" value={metrics.appointments} change="+8%" changePositive={true} />
+        <MetricCard icon={<FiHelpCircle className="w-5 h-5" />} label="FAQs Respondidas" value={metrics.faqs} change="+15%" changePositive={true} />
+        <MetricCard icon={<FiUsers className="w-5 h-5" />} label="Transferidas a Humano" value={metrics.transfers} change="-5%" changePositive={false} />
       </div>
 
-      {/* Recent Calls */}
+      {/* Llamadas Recientes */}
       <Card className="shadow-sm">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="font-serif text-lg">Recent Calls</CardTitle>
+            <CardTitle className="font-serif text-lg">Llamadas Recientes</CardTitle>
             <Button variant="outline" size="sm" onClick={onTestCall} className="gap-2 text-xs">
               <FiPhoneCall className="w-3.5 h-3.5" />
-              Test Call
+              Llamada de Prueba
             </Button>
           </div>
-          <CardDescription className="font-sans text-xs">Latest interactions handled by your AI receptionist</CardDescription>
+          <CardDescription className="font-sans text-xs">Últimas interacciones atendidas por su recepcionista IA</CardDescription>
         </CardHeader>
         <CardContent>
           {recentCalls.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
               <FiPhoneIncoming className="w-12 h-12 mb-3 opacity-30" />
-              <p className="text-sm font-sans font-medium">No calls yet today</p>
-              <p className="text-xs font-sans mt-1">Your AI receptionist is standing by</p>
+              <p className="text-sm font-sans font-medium">Aún no hay llamadas hoy</p>
+              <p className="text-xs font-sans mt-1">Su recepcionista IA está listo para atender</p>
             </div>
           ) : (
             <ScrollArea className="max-h-[400px]">
@@ -690,22 +690,22 @@ function DashboardScreen({ calls, onViewAllCalls, onManageKB, onTestCall }: { ca
         </CardContent>
       </Card>
 
-      {/* Quick Actions */}
+      {/* Acciones Rápidas */}
       <div className="flex gap-3 flex-wrap">
         <Button variant="outline" onClick={onViewAllCalls} className="gap-2 font-sans text-sm">
           <FiList className="w-4 h-4" />
-          View All Calls
+          Ver Todas las Llamadas
         </Button>
         <Button variant="outline" onClick={onManageKB} className="gap-2 font-sans text-sm">
           <FiDatabase className="w-4 h-4" />
-          Manage Knowledge Base
+          Gestionar Base de Conocimiento
         </Button>
       </div>
     </div>
   )
 }
 
-// ---- Call Timeline Item ----
+// ---- Elemento de Línea de Tiempo de Llamada ----
 function CallTimelineItem({ call }: { call: CallEntry }) {
   const [detailOpen, setDetailOpen] = useState(false)
 
@@ -738,7 +738,7 @@ function CallTimelineItem({ call }: { call: CallEntry }) {
   )
 }
 
-// ---- Call Log Screen ----
+// ---- Pantalla de Registro de Llamadas ----
 function CallLogScreen({ calls }: { calls: CallEntry[] }) {
   const [showSample, setShowSample] = useState(true)
   const [outcomeFilter, setOutcomeFilter] = useState<string>('all')
@@ -764,72 +764,72 @@ function CallLogScreen({ calls }: { calls: CallEntry[] }) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Call Log</h1>
-          <p className="text-sm font-sans text-muted-foreground mt-1">Complete history of all incoming calls</p>
+          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Registro de Llamadas</h1>
+          <p className="text-sm font-sans text-muted-foreground mt-1">Historial completo de todas las llamadas entrantes</p>
         </div>
         <div className="flex items-center gap-3">
-          <Label htmlFor="sample-toggle-cl" className="text-xs font-sans text-muted-foreground">Sample Data</Label>
+          <Label htmlFor="sample-toggle-cl" className="text-xs font-sans text-muted-foreground">Datos de Ejemplo</Label>
           <Switch id="sample-toggle-cl" checked={showSample} onCheckedChange={setShowSample} />
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filtros */}
       <Card className="shadow-sm">
         <CardContent className="p-4">
           <div className="flex flex-wrap gap-3 items-end">
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">From</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Desde</Label>
               <Input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="w-40 text-sm" />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">To</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Hasta</Label>
               <Input type="date" value={dateTo} onChange={(e) => setDateTo(e.target.value)} className="w-40 text-sm" />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">Outcome</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Resultado</Label>
               <Select value={outcomeFilter} onValueChange={setOutcomeFilter}>
                 <SelectTrigger className="w-44 text-sm">
-                  <SelectValue placeholder="All Outcomes" />
+                  <SelectValue placeholder="Todos los Resultados" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Outcomes</SelectItem>
-                  <SelectItem value="faq">FAQ Answered</SelectItem>
-                  <SelectItem value="appointment">Appointment Booked</SelectItem>
-                  <SelectItem value="transfer">Transferred</SelectItem>
-                  <SelectItem value="missed">Missed</SelectItem>
+                  <SelectItem value="all">Todos los Resultados</SelectItem>
+                  <SelectItem value="faq">FAQ Respondida</SelectItem>
+                  <SelectItem value="appointment">Cita Agendada</SelectItem>
+                  <SelectItem value="transfer">Transferida</SelectItem>
+                  <SelectItem value="missed">Perdida</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-1 flex-1 min-w-[200px]">
-              <Label className="text-xs font-sans text-muted-foreground">Search</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Buscar</Label>
               <div className="relative">
                 <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input placeholder="Search by caller number..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9 text-sm" />
+                <Input placeholder="Buscar por número de teléfono..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9 text-sm" />
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Table */}
+      {/* Tabla */}
       <Card className="shadow-sm">
         <CardContent className="p-0">
           {filteredCalls.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
               <FiSearch className="w-10 h-10 mb-3 opacity-30" />
-              <p className="text-sm font-sans font-medium">No calls found</p>
-              <p className="text-xs font-sans mt-1">{showSample ? 'Try adjusting your filters' : 'Enable sample data to view demo call records'}</p>
+              <p className="text-sm font-sans font-medium">No se encontraron llamadas</p>
+              <p className="text-xs font-sans mt-1">{showSample ? 'Intente ajustar sus filtros' : 'Active los datos de ejemplo para ver registros de llamadas demo'}</p>
             </div>
           ) : (
             <ScrollArea className="max-h-[500px]">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="font-sans text-xs">Date / Time</TableHead>
-                    <TableHead className="font-sans text-xs">Caller Number</TableHead>
-                    <TableHead className="font-sans text-xs">Duration</TableHead>
-                    <TableHead className="font-sans text-xs">Outcome</TableHead>
-                    <TableHead className="font-sans text-xs">Summary</TableHead>
+                    <TableHead className="font-sans text-xs">Fecha / Hora</TableHead>
+                    <TableHead className="font-sans text-xs">Número</TableHead>
+                    <TableHead className="font-sans text-xs">Duración</TableHead>
+                    <TableHead className="font-sans text-xs">Resultado</TableHead>
+                    <TableHead className="font-sans text-xs">Resumen</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -859,7 +859,7 @@ function CallLogScreen({ calls }: { calls: CallEntry[] }) {
   )
 }
 
-// ---- Knowledge Base Screen ----
+// ---- Pantalla de Base de Conocimiento ----
 function KnowledgeBaseScreen() {
   const [crawlUrl, setCrawlUrl] = useState('')
   const [crawlLoading, setCrawlLoading] = useState(false)
@@ -872,13 +872,13 @@ function KnowledgeBaseScreen() {
     try {
       const result = await crawlWebsite(RAG_ID, crawlUrl.trim())
       if (result.success) {
-        setCrawlStatus({ type: 'success', message: result.message ?? 'Website crawled and added successfully.' })
+        setCrawlStatus({ type: 'success', message: result.message ?? 'Sitio web rastreado y agregado exitosamente.' })
         setCrawlUrl('')
       } else {
-        setCrawlStatus({ type: 'error', message: result.error ?? 'Failed to crawl website.' })
+        setCrawlStatus({ type: 'error', message: result.error ?? 'No se pudo rastrear el sitio web.' })
       }
     } catch {
-      setCrawlStatus({ type: 'error', message: 'An error occurred while crawling.' })
+      setCrawlStatus({ type: 'error', message: 'Ocurrió un error al rastrear el sitio.' })
     }
     setCrawlLoading(false)
   }
@@ -886,41 +886,41 @@ function KnowledgeBaseScreen() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Knowledge Base</h1>
-        <p className="text-sm font-sans text-muted-foreground mt-1">Manage documents and data sources for your AI receptionist</p>
+        <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Base de Conocimiento</h1>
+        <p className="text-sm font-sans text-muted-foreground mt-1">Gestione documentos y fuentes de datos para su recepcionista IA</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Upload Documents */}
+        {/* Subir Documentos */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="font-serif text-base flex items-center gap-2">
               <FiDatabase className="w-4 h-4 text-primary" />
-              Upload Documents
+              Subir Documentos
             </CardTitle>
-            <CardDescription className="font-sans text-xs">Add PDF, DOCX, or TXT files to train the receptionist</CardDescription>
+            <CardDescription className="font-sans text-xs">Agregue archivos PDF, DOCX o TXT para entrenar al recepcionista</CardDescription>
           </CardHeader>
           <CardContent>
             <KnowledgeBaseUpload ragId={RAG_ID} />
           </CardContent>
         </Card>
 
-        {/* Crawl Website */}
+        {/* Rastrear Sitio Web */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
             <CardTitle className="font-serif text-base flex items-center gap-2">
               <FiGlobe className="w-4 h-4 text-primary" />
-              Add Website URL
+              Agregar URL de Sitio Web
             </CardTitle>
-            <CardDescription className="font-sans text-xs">Crawl a website to extract content for the knowledge base</CardDescription>
+            <CardDescription className="font-sans text-xs">Rastree un sitio web para extraer contenido para la base de conocimiento</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="crawl-url" className="text-sm font-sans">Website URL</Label>
+              <Label htmlFor="crawl-url" className="text-sm font-sans">URL del Sitio Web</Label>
               <Input
                 id="crawl-url"
                 type="url"
-                placeholder="https://www.example.com/faq"
+                placeholder="https://www.ejemplo.com/preguntas-frecuentes"
                 value={crawlUrl}
                 onChange={(e) => setCrawlUrl(e.target.value)}
               />
@@ -929,12 +929,12 @@ function KnowledgeBaseScreen() {
               {crawlLoading ? (
                 <>
                   <FiActivity className="w-4 h-4 animate-spin" />
-                  Crawling...
+                  Rastreando...
                 </>
               ) : (
                 <>
                   <FiGlobe className="w-4 h-4" />
-                  Crawl Website
+                  Rastrear Sitio Web
                 </>
               )}
             </Button>
@@ -949,8 +949,8 @@ function KnowledgeBaseScreen() {
             )}
 
             <div className="text-xs font-sans text-muted-foreground space-y-1 pt-2">
-              <p>Provide a URL and we will extract its content for the AI receptionist to reference when answering patient inquiries.</p>
-              <p>Ideal for practice websites, FAQ pages, and service descriptions.</p>
+              <p>Proporcione una URL y extraeremos su contenido para que el recepcionista IA lo use como referencia al responder consultas de pacientes.</p>
+              <p>Ideal para sitios web de consultorios, páginas de preguntas frecuentes y descripciones de servicios.</p>
             </div>
           </CardContent>
         </Card>
@@ -959,7 +959,7 @@ function KnowledgeBaseScreen() {
   )
 }
 
-// ---- Settings Screen ----
+// ---- Pantalla de Configuración ----
 function SettingsScreen() {
   const [greeting, setGreeting] = useState('')
   const [transferRules, setTransferRules] = useState<TransferRule[]>([])
@@ -974,22 +974,22 @@ function SettingsScreen() {
       const saved = localStorage.getItem('medconnect_settings')
       if (saved) {
         const parsed = JSON.parse(saved)
-        setGreeting(parsed.greeting ?? 'Thank you for calling MedConnect. How can I help you today?')
+        setGreeting(parsed.greeting ?? 'Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?')
         setTransferRules(Array.isArray(parsed.transferRules) ? parsed.transferRules : DEFAULT_TRANSFER_RULES)
         setAppointmentDuration(parsed.appointmentDuration ?? '30')
         setBusinessHours(Array.isArray(parsed.businessHours) ? parsed.businessHours : DEFAULT_BUSINESS_HOURS)
-        setPracticeInfo(parsed.practiceInfo ?? { name: 'MedConnect Family Practice', address: '1234 Health Avenue, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
+        setPracticeInfo(parsed.practiceInfo ?? { name: 'MedConnect Consultorio Familiar', address: 'Avenida Salud 1234, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
       } else {
-        setGreeting('Thank you for calling MedConnect. How can I help you today?')
+        setGreeting('Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?')
         setTransferRules(DEFAULT_TRANSFER_RULES)
         setBusinessHours(DEFAULT_BUSINESS_HOURS)
-        setPracticeInfo({ name: 'MedConnect Family Practice', address: '1234 Health Avenue, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
+        setPracticeInfo({ name: 'MedConnect Consultorio Familiar', address: 'Avenida Salud 1234, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
       }
     } catch {
-      setGreeting('Thank you for calling MedConnect. How can I help you today?')
+      setGreeting('Gracias por llamar a MedConnect. ¿En qué puedo ayudarle hoy?')
       setTransferRules(DEFAULT_TRANSFER_RULES)
       setBusinessHours(DEFAULT_BUSINESS_HOURS)
-      setPracticeInfo({ name: 'MedConnect Family Practice', address: '1234 Health Avenue, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
+      setPracticeInfo({ name: 'MedConnect Consultorio Familiar', address: 'Avenida Salud 1234, Suite 200', phone: '(555) 100-2000', insuranceList: 'Blue Cross Blue Shield, Aetna, Cigna, United Healthcare, Medicare' })
     }
   }, [])
 
@@ -998,10 +998,10 @@ function SettingsScreen() {
       localStorage.setItem('medconnect_settings', JSON.stringify({
         greeting, transferRules, appointmentDuration, businessHours, practiceInfo
       }))
-      setSaveStatus('Settings saved successfully.')
+      setSaveStatus('Configuración guardada exitosamente.')
       setTimeout(() => setSaveStatus(null), 3000)
     } catch {
-      setSaveStatus('Failed to save settings.')
+      setSaveStatus('Error al guardar la configuración.')
     }
   }, [greeting, transferRules, appointmentDuration, businessHours, practiceInfo])
 
@@ -1027,30 +1027,30 @@ function SettingsScreen() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Settings</h1>
-          <p className="text-sm font-sans text-muted-foreground mt-1">Configure your AI receptionist behavior</p>
+          <h1 className="text-2xl font-serif font-bold tracking-wide text-foreground">Configuración</h1>
+          <p className="text-sm font-sans text-muted-foreground mt-1">Configure el comportamiento de su recepcionista IA</p>
         </div>
         <Button onClick={saveSettings} className="gap-2 font-sans text-sm">
           <FiCheckCircle className="w-4 h-4" />
-          Save All Settings
+          Guardar Configuración
         </Button>
       </div>
 
       {saveStatus && (
-        <div className={cn('rounded-md p-3 text-sm font-sans border', saveStatus.includes('success') ? 'bg-green-50 text-green-800 border-green-200' : 'bg-destructive/10 text-destructive border-destructive/20')}>
+        <div className={cn('rounded-md p-3 text-sm font-sans border', saveStatus.includes('exitosamente') ? 'bg-green-50 text-green-800 border-green-200' : 'bg-destructive/10 text-destructive border-destructive/20')}>
           <div className="flex items-center gap-2">
-            {saveStatus.includes('success') ? <FiCheckCircle className="w-4 h-4" /> : <FiAlertCircle className="w-4 h-4" />}
+            {saveStatus.includes('exitosamente') ? <FiCheckCircle className="w-4 h-4" /> : <FiAlertCircle className="w-4 h-4" />}
             {saveStatus}
           </div>
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Greeting */}
+        {/* Saludo */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-base">Greeting Message</CardTitle>
-            <CardDescription className="font-sans text-xs">The opening line when a caller connects</CardDescription>
+            <CardTitle className="font-serif text-base">Mensaje de Bienvenida</CardTitle>
+            <CardDescription className="font-sans text-xs">La frase inicial cuando un paciente se conecta</CardDescription>
           </CardHeader>
           <CardContent>
             <Textarea
@@ -1058,60 +1058,60 @@ function SettingsScreen() {
               onChange={(e) => setGreeting(e.target.value)}
               rows={3}
               className="font-sans text-sm resize-none"
-              placeholder="Enter the greeting message..."
+              placeholder="Ingrese el mensaje de bienvenida..."
             />
           </CardContent>
         </Card>
 
-        {/* Calendar */}
+        {/* Calendario */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-base">Calendar Integration</CardTitle>
-            <CardDescription className="font-sans text-xs">Google Calendar connection status</CardDescription>
+            <CardTitle className="font-serif text-base">Integración de Calendario</CardTitle>
+            <CardDescription className="font-sans text-xs">Estado de conexión con Google Calendar</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-3">
               <Badge className="bg-green-100 text-green-800 border border-green-200 gap-1">
                 <FiCheckCircle className="w-3 h-3" />
-                Connected
+                Conectado
               </Badge>
               <span className="text-sm font-sans text-muted-foreground">Google Calendar</span>
             </div>
             <div className="space-y-2">
-              <Label className="text-sm font-sans">Default Appointment Duration</Label>
+              <Label className="text-sm font-sans">Duración Predeterminada de Cita</Label>
               <Select value={appointmentDuration} onValueChange={setAppointmentDuration}>
                 <SelectTrigger className="w-full text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="15">15 minutes</SelectItem>
-                  <SelectItem value="30">30 minutes</SelectItem>
-                  <SelectItem value="45">45 minutes</SelectItem>
-                  <SelectItem value="60">60 minutes</SelectItem>
+                  <SelectItem value="15">15 minutos</SelectItem>
+                  <SelectItem value="30">30 minutos</SelectItem>
+                  <SelectItem value="45">45 minutos</SelectItem>
+                  <SelectItem value="60">60 minutos</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </CardContent>
         </Card>
 
-        {/* Transfer Rules */}
+        {/* Reglas de Transferencia */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-base">Transfer Rules</CardTitle>
-            <CardDescription className="font-sans text-xs">Keywords that trigger transfer to a human agent</CardDescription>
+            <CardTitle className="font-serif text-base">Reglas de Transferencia</CardTitle>
+            <CardDescription className="font-sans text-xs">Palabras clave que activan la transferencia a un agente humano</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex gap-2">
               <Input
                 value={newRule}
                 onChange={(e) => setNewRule(e.target.value)}
-                placeholder="Add keyword..."
+                placeholder="Agregar palabra clave..."
                 className="text-sm"
                 onKeyDown={(e) => { if (e.key === 'Enter') addTransferRule() }}
               />
               <Button variant="outline" size="sm" onClick={addTransferRule} className="gap-1 text-xs flex-shrink-0">
                 <FiPlus className="w-3.5 h-3.5" />
-                Add
+                Agregar
               </Button>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -1127,37 +1127,37 @@ function SettingsScreen() {
           </CardContent>
         </Card>
 
-        {/* Practice Info */}
+        {/* Información del Consultorio */}
         <Card className="shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-base">Practice Information</CardTitle>
-            <CardDescription className="font-sans text-xs">Details shared with callers</CardDescription>
+            <CardTitle className="font-serif text-base">Información del Consultorio</CardTitle>
+            <CardDescription className="font-sans text-xs">Datos compartidos con los pacientes que llaman</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">Practice Name</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Nombre del Consultorio</Label>
               <Input value={practiceInfo.name} onChange={(e) => setPracticeInfo(prev => ({ ...prev, name: e.target.value }))} className="text-sm" />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">Address</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Dirección</Label>
               <Input value={practiceInfo.address} onChange={(e) => setPracticeInfo(prev => ({ ...prev, address: e.target.value }))} className="text-sm" />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">Phone</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Teléfono</Label>
               <Input value={practiceInfo.phone} onChange={(e) => setPracticeInfo(prev => ({ ...prev, phone: e.target.value }))} className="text-sm" />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs font-sans text-muted-foreground">Accepted Insurance (comma-separated)</Label>
+              <Label className="text-xs font-sans text-muted-foreground">Seguros Aceptados (separados por coma)</Label>
               <Textarea value={practiceInfo.insuranceList} onChange={(e) => setPracticeInfo(prev => ({ ...prev, insuranceList: e.target.value }))} rows={2} className="text-sm resize-none" />
             </div>
           </CardContent>
         </Card>
 
-        {/* Business Hours */}
+        {/* Horario de Atención */}
         <Card className="shadow-sm lg:col-span-2">
           <CardHeader className="pb-3">
-            <CardTitle className="font-serif text-base">Business Hours</CardTitle>
-            <CardDescription className="font-sans text-xs">Set the operating schedule for your practice</CardDescription>
+            <CardTitle className="font-serif text-base">Horario de Atención</CardTitle>
+            <CardDescription className="font-sans text-xs">Establezca el horario de operación de su consultorio</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -1168,12 +1168,12 @@ function SettingsScreen() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Switch checked={!bh.closed} onCheckedChange={(v) => updateBusinessHour(idx, 'closed', !v)} />
-                    <span className="text-xs font-sans text-muted-foreground w-12">{bh.closed ? 'Closed' : 'Open'}</span>
+                    <span className="text-xs font-sans text-muted-foreground w-16">{bh.closed ? 'Cerrado' : 'Abierto'}</span>
                   </div>
                   {!bh.closed && (
                     <>
                       <Input type="time" value={bh.open} onChange={(e) => updateBusinessHour(idx, 'open', e.target.value)} className="w-32 text-sm" />
-                      <span className="text-xs text-muted-foreground">to</span>
+                      <span className="text-xs text-muted-foreground">a</span>
                       <Input type="time" value={bh.close} onChange={(e) => updateBusinessHour(idx, 'close', e.target.value)} className="w-32 text-sm" />
                     </>
                   )}
@@ -1187,7 +1187,7 @@ function SettingsScreen() {
   )
 }
 
-// ---- Main Page ----
+// ---- Página Principal ----
 export default function Page() {
   const [activeNav, setActiveNav] = useState('dashboard')
   const [agentActive, setAgentActive] = useState(true)
@@ -1195,17 +1195,17 @@ export default function Page() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const navItems = useMemo(() => [
-    { id: 'dashboard', label: 'Dashboard', icon: <FiHome className="w-4 h-4" /> },
-    { id: 'calls', label: 'Call Log', icon: <FiList className="w-4 h-4" /> },
-    { id: 'kb', label: 'Knowledge Base', icon: <FiDatabase className="w-4 h-4" /> },
-    { id: 'settings', label: 'Settings', icon: <FiSettings className="w-4 h-4" /> },
+    { id: 'dashboard', label: 'Panel Principal', icon: <FiHome className="w-4 h-4" /> },
+    { id: 'calls', label: 'Registro de Llamadas', icon: <FiList className="w-4 h-4" /> },
+    { id: 'kb', label: 'Base de Conocimiento', icon: <FiDatabase className="w-4 h-4" /> },
+    { id: 'settings', label: 'Configuración', icon: <FiSettings className="w-4 h-4" /> },
   ], [])
 
   return (
     <ErrorBoundary>
       <TooltipProvider>
         <div className="min-h-screen bg-background text-foreground flex">
-          {/* Sidebar */}
+          {/* Barra Lateral */}
           <aside className={cn('flex-shrink-0 bg-card border-r border-border flex flex-col transition-all duration-300', sidebarCollapsed ? 'w-16' : 'w-64')}>
             {/* Logo */}
             <div className="p-4 border-b border-border/50">
@@ -1221,7 +1221,7 @@ export default function Page() {
                     </div>
                     <div>
                       <h2 className="text-sm font-serif font-bold tracking-wide text-foreground">MedConnect</h2>
-                      <p className="text-[10px] font-sans text-muted-foreground">AI Receptionist</p>
+                      <p className="text-[10px] font-sans text-muted-foreground">Recepcionista IA</p>
                     </div>
                   </div>
                   <button onClick={() => setSidebarCollapsed(true)} className="text-muted-foreground hover:text-foreground transition-colors">
@@ -1231,7 +1231,7 @@ export default function Page() {
               )}
             </div>
 
-            {/* Nav */}
+            {/* Navegación */}
             <nav className="flex-1 p-3 space-y-1">
               {navItems.map(item => (
                 sidebarCollapsed ? (
@@ -1252,7 +1252,7 @@ export default function Page() {
               ))}
             </nav>
 
-            {/* Agent Status */}
+            {/* Estado del Agente */}
             <div className="p-4 border-t border-border/50">
               {sidebarCollapsed ? (
                 <Tooltip>
@@ -1261,19 +1261,19 @@ export default function Page() {
                       <div className={cn('w-3 h-3 rounded-full', agentActive ? 'bg-green-500' : 'bg-muted-foreground')} />
                     </div>
                   </TooltipTrigger>
-                  <TooltipContent side="right"><p>{agentActive ? 'Agent Active' : 'Agent Inactive'}</p></TooltipContent>
+                  <TooltipContent side="right"><p>{agentActive ? 'Agente Activo' : 'Agente Inactivo'}</p></TooltipContent>
                 </Tooltip>
               ) : (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className={cn('w-2.5 h-2.5 rounded-full', agentActive ? 'bg-green-500 animate-pulse' : 'bg-muted-foreground')} />
-                      <span className="text-xs font-sans font-medium text-foreground">{agentActive ? 'Agent Active' : 'Agent Inactive'}</span>
+                      <span className="text-xs font-sans font-medium text-foreground">{agentActive ? 'Agente Activo' : 'Agente Inactivo'}</span>
                     </div>
                     <Switch checked={agentActive} onCheckedChange={setAgentActive} />
                   </div>
                   <div className="text-[10px] font-sans text-muted-foreground space-y-0.5">
-                    <p className="flex items-center gap-1"><FiPhone className="w-3 h-3" /> Voice Receptionist</p>
+                    <p className="flex items-center gap-1"><FiPhone className="w-3 h-3" /> Recepcionista de Voz</p>
                     <p className="truncate text-[9px]">ID: {VOICE_AGENT_ID}</p>
                   </div>
                 </div>
@@ -1281,7 +1281,7 @@ export default function Page() {
             </div>
           </aside>
 
-          {/* Main Content */}
+          {/* Contenido Principal */}
           <main className="flex-1 overflow-y-auto">
             <div className="max-w-6xl mx-auto p-6 lg:p-8">
               {activeNav === 'dashboard' && (
@@ -1298,7 +1298,7 @@ export default function Page() {
             </div>
           </main>
 
-          {/* Voice Call Modal */}
+          {/* Modal de Llamada de Voz */}
           <VoiceCallModal open={voiceCallOpen} onClose={() => setVoiceCallOpen(false)} />
         </div>
       </TooltipProvider>
